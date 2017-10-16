@@ -1,2 +1,3 @@
-# basic-sudoku
+# Basic Sudoku
+
 Basically, a sudoku
