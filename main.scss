@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:500,700');
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+$main: #3d4f65;
+$supp: #006EFF;
+$green: #3ecf8e;
+$bg: #fafafa;
+
+$main-dark: #fafafa;
+$text: #dee1e8;
+$bg-dark: #1e2124;
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    user-select: none;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Lato', sans-serif;
+    font-size: 18px;
+
+    &.theme-light {
+        background: $bg;
+
+        & #controls button, #after button {
+            color: rgba($supp, .55);
+        }
+
+        & #controls h2 {
+            color: $main;
+        }
+
+        & #panel {
+            background: rgba($supp, .05);
+            color: $main;
+
+            & div:hover {
+                background: rgba($supp, .06);
+            }
+        }
+            
+        & #board div {
+            color: $main;
+            background: transparent;
+            border-top: 1px solid $main;
+            border-left: 1px solid $main;
+
+            &:nth-child(9n) {border-right: 1px solid $main}
+            &:nth-child(3n) {border-right: 2px solid $main}
+            &:nth-child(3n + 1) {border-left: none}
+            &:nth-child(9n + 1) {border-left: 2px solid $main}
+            &:nth-child(n + 73) {border-bottom: 2px solid $main}
+            &:nth-child(-n + 9),
+            &:nth-child(n + 28):nth-child(-n + 36),
+            &:nth-child(n + 55):nth-child(-n + 63) {border-top: 2px solid $main}
+
+            &.selectable:hover {
+                background: rgba($supp, .1);
+            }
+
+            &.selected {
+                background: rgba($supp, .15);
+            }
+        }
+    }
+
+    &.theme-dark {
+        background: $bg-dark;
+
+        & #controls button, #after button {
+            color: rgba($text, .8);
+        }
+
+        & #controls h2 {
+            color: $text;
+        }
+
+        & #panel {
+            background: rgba($text, .05);
+            color: $main-dark;
+
+            & div:hover {
+                background: rgba($text, .06);
+            }
+        }
+
+        & #board div {
+            color: $text;
+            background: rgba($text, .05);
+            border-top: 1px solid $text;
+            border-left: 1px solid $text;
+
+            &:nth-child(9n) {border-right: 1px solid $text}
+            &:nth-child(3n) {border-right: 2px solid $text}
+            &:nth-child(3n + 1) {border-left: none}
+            &:nth-child(9n + 1) {border-left: 2px solid $text}
+            &:nth-child(n + 73) {border-bottom: 2px solid $text}
+            &:nth-child(-n + 9),
+            &:nth-child(n + 28):nth-child(-n + 36),
+            &:nth-child(n + 55):nth-child(-n + 63) {border-top: 2px solid $text}
+
+            &.selectable:hover {
+                background: rgba($text, .15);
+            }
+
+            &.selected {
+                background: rgba($text, .25);
+            }
+        }
+    }
+}
+
+#controls {
+    margin: 0 0 15px;
+}
+
+#after {
+    margin: 10px 0;
+}
+
+#controls, #after {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    button {
+        height: 50px;
+        width: 50px;
+        background: transparent;
+        cursor: pointer;
+        border: none;
+        outline: none;
+    }
+
+    h2 {
+        text-align: center;
+        text-transform: uppercase;
+        font-family: 'Raleway', sans-serif;
+    }
+}
+
+#controls button:last-child {
+    color: $green !important;
+}
+
+#panel {
+    margin: 0 0 15px;
+    display: flex;
+
+    & div {
+        flex: 0 0 calc(100% / 9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 50px;
+        border-right: none;
+        transition: background .1s ease-in-out;
+        cursor: pointer;
+    }
+}
+
+#board {
+    display: flex;
+    width: 450px;
+    flex-wrap: wrap;
+
+    & div {
+        flex: 0 0 calc(100% / 9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 50px;
+    }
+
+    & .selectable {
+        transition: background .15s ease-in-out;
+        cursor: pointer;
+    }
+
+    & div:not(.selectable) {
+        font-weight: bold;
+        cursor: default;
+    }
+
+}
